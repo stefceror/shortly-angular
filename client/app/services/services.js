@@ -13,16 +13,26 @@ angular.module('shortly.services', [])
     });
   };
   var addLink = function(link){
-    console.log(link);
-    return $http({
+    $http({
       method:'POST',
       url: '/api/links',
       data: link
     });
   };
+  var goToLink = function(link){
+    return $http({
+      method:'GET',
+      url: '127.0.0.1:8000/api/links/'+link.code,
+      // data: link
+    }).then(function(resp){
+      console.log(resp)
+      $location(resp.data)
+    });
+  };
   return {
     getLinks: getLinks,
-    addLink: addLink
+    addLink: addLink,
+    goToLink: goToLink
   };
 })
 .factory('Auth', function ($http, $location, $window) {

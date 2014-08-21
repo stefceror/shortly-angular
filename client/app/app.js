@@ -24,6 +24,9 @@ angular.module('shortly', [
       templateUrl: 'app/links/links.html',
       controller: 'LinksController'
     })
+    .when('/:code', {
+      url: '/api/links/code'
+    })
     .otherwise({
       redirectTo: '/links'
     });

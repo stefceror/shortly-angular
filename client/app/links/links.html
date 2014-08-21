@@ -1,7 +1,10 @@
 <div id='container'>
   <!-- Your html here -->
   <h1>links </h1>
-  <ul>
-    <li ng-repeat="link in links">{link}</li>
-  </ul>
+  <div class='link' ng-repeat="link in data.links" ng-click="clickLink()">
+    <div class='visits'><span class='count'>{{link.visits}}</span>Visits</div>
+    <div class='title'>{{link.title}}</div>
+    <div class='original'>{{link.url}}</div>
+    <a href='{{link.base_url}}/{{link.code}}'>{{link.base_url}}/{{link.code}}</a>
+  </div>
 </div>

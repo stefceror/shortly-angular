@@ -2,13 +2,20 @@ angular.module('shortly.links', [])
 
 .controller('LinksController', function ($scope, Links) {
   // Your code here
-  $scope.data = {};
-  $scope.getLinks = Links.getLinks;
 
-  var outerData = [];
+  $scope.getLinks = Links.getLinks;
+  $scope.goTo = Links.goToLink;
+  $scope.data = {};
+  $scope.data.links = [];
   $scope.getLinks().then(function(data){
-    outerData = data;
+    data.forEach(function(link, index, data){
+      $scope.data.links.push(link);
+    });
   });
-  $scope.data.links = outerData;
-  console.log($scope.data.links);
+  $scope.clickLink = function(){
+    var link = this.link;
+    $scope.goTo(link).then(function(res){
+      console.log(res);
+    });
+  };
 });
